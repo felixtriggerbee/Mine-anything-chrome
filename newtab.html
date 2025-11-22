@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mine Anything - New Tab</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Minecraft', 'Press Start 2P', 'Courier New', monospace;
+      background: #2a2a2a;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated background blocks */
+    .bg-blocks {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.05;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      z-index: 1;
+      text-align: center;
+      max-width: 900px;
+      padding: 40px;
+    }
+
+    .logo {
+      font-size: 48px;
+      margin-bottom: 10px;
+      color: #4a9eff;
+      text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .tagline {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-bottom: 40px;
+    }
+
+    /* Google Search Bar */
+    .search-container {
+      margin: 0 auto 40px;
+      max-width: 600px;
+    }
+
+    .search-form {
+      display: flex;
+      gap: 10px;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 15px 20px;
+      background: #353535;
+      border: 2px solid #4a4a4a;
+      border-radius: 8px;
+      color: #e0e0e0;
+      font-family: 'Minecraft', 'Press Start 2P', 'Courier New', monospace;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      border-color: #4a9eff;
+      box-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+    }
+
+    .search-input::placeholder {
+      color: #808080;
+    }
+
+    .search-button {
+      padding: 15px 30px;
+      background: #4a9eff;
+      border: 2px solid #3a7fcf;
+      border-radius: 8px;
+      color: #ffffff;
+      font-family: 'Minecraft', 'Press Start 2P', 'Courier New', monospace;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .search-button:hover {
+      background: #3a7fcf;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(74, 158, 255, 0.4);
+    }
+
+    .search-button:active {
+      transform: translateY(0);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin: 40px 0;
+    }
+
+    .stat-card {
+      background: #353535;
+      border: 2px solid #4a4a4a;
+      border-radius: 8px;
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      border-color: #4a9eff;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      opacity: 0.7;
+      margin-bottom: 10px;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      color: #4a9eff;
+      text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    .quick-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .quick-link {
+      background: #353535;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #e0e0e0;
+      border: 2px solid #4a4a4a;
+      transition: all 0.3s ease;
+      font-size: 12px;
+    }
+
+    .quick-link:hover {
+      background: #404040;
+      border-color: #4a9eff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(74, 158, 255, 0.3);
+    }
+
+    .hint {
+      margin-top: 40px;
+      opacity: 0.5;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-blocks" id="bgBlocks"></div>
+  
+  <div class="container">
+    <div class="logo">⛏️ Mine Anything</div>
+    <p class="tagline">Minecraft meets the web!</p>
+
+    <!-- Google Search Bar -->
+    <div class="search-container">
+      <form class="search-form" id="searchForm" action="https://www.google.com/search" method="get" target="_blank">
+        <input 
+          type="text" 
+          name="q" 
+          class="search-input" 
+          placeholder="Search Google..." 
+          autocomplete="off"
+          autofocus
+        >
+        <button type="submit" class="search-button">Search</button>
+      </form>
+    </div>
+
+    <div class="stats-grid" id="statsGrid">
+      <div class="stat-card">
+        <div class="stat-label">Total Mined</div>
+        <div class="stat-value" id="totalMined">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Current Tool</div>
+        <div class="stat-value" id="currentTool">Hand</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total XP</div>
+        <div class="stat-value" id="totalXP">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Achievements</div>
+        <div class="stat-value" id="achievements">0/15</div>
+      </div>
+    </div>
+
+    <div class="quick-links">
+      <a href="https://youtube.com" class="quick-link">📺 YouTube</a>
+      <a href="https://github.com" class="quick-link">💻 GitHub</a>
+      <a href="https://reddit.com" class="quick-link">💬 Reddit</a>
+      <a href="https://twitter.com" class="quick-link">🐦 Twitter</a>
+    </div>
+
+    <div class="hint">Press Cmd/Ctrl + Shift + E to start mining anywhere!</div>
+  </div>
+
+  <script src="newtab.js"></script>
+</body>
+</html>

@@ -1,0 +1,1180 @@
+/* Mine Anything - Styles */
+
+@font-face {
+  font-family: 'Minecraft';
+  src: url('chrome-extension://__MSG_@@extension_id__/assets/fonts/Minecraft.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body.mine-cursor-active {
+  cursor: crosshair !important;
+}
+
+/* Toggle Button Container */
+.mine-toggle-container {
+  position: fixed !important;
+  z-index: 2147483646 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px 10px !important;
+  background: #b8b8b8 !important;
+  font-family: 'Minecraft', 'Press Start 2P', 'Courier New', monospace !important;
+  font-size: 13px !important;
+  color: #2a2a2a !important;
+  /* Minecraft-style border */
+  border-top: 3px solid #d8d8d8 !important;
+  border-left: 3px solid #d8d8d8 !important;
+  border-right: 3px solid #4a4a4a !important;
+  border-bottom: 3px solid #4a4a4a !important;
+  box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.2), inset -2px -2px 0 rgba(0, 0, 0, 0.2) !important;
+  user-select: none !important;
+  width: auto !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Drag handle */
+.mine-toggle-drag-handle {
+  font-size: 16px !important;
+  color: #4a4a4a !important;
+  cursor: grab !important;
+  padding: 0 4px !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  transition: all 0.2s ease !important;
+  line-height: 1 !important;
+  flex-shrink: 0 !important;
+}
+
+.mine-toggle-container:hover .mine-toggle-drag-handle {
+  opacity: 1 !important;
+  width: auto !important;
+  padding: 0 4px !important;
+}
+
+.mine-toggle-drag-handle:active {
+  cursor: grabbing !important;
+}
+
+.mine-toggle-container.hidden {
+  display: none !important;
+}
+
+/* Position classes */
+.mine-toggle-container.pos-top-right {
+  top: 20px !important;
+  right: 20px !important;
+}
+
+.mine-toggle-container.pos-top-left {
+  top: 20px !important;
+  left: 20px !important;
+}
+
+.mine-toggle-container.pos-bottom-right {
+  bottom: 20px !important;
+  right: 20px !important;
+}
+
+.mine-toggle-container.pos-bottom-left {
+  bottom: 20px !important;
+  left: 20px !important;
+}
+
+/* Tool icon in toggle */
+.mine-toggle-tool-icon {
+  width: auto !important;
+  height: 25px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  min-width: 25px !important;
+}
+
+.mine-toggle-tool-icon img {
+  width: auto !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  image-rendering: pixelated !important;
+}
+
+/* Toggle text */
+.mine-toggle-text {
+  line-height: 1.5 !important;
+  white-space: nowrap !important;
+  font-weight: bold !important;
+}
+
+#mine-status {
+  color: #8b0000 !important;
+}
+
+#mine-status.active {
+  color: #006400 !important;
+}
+
+/* Reset button (now inline) */
+.mine-reset-btn {
+  background: transparent !important;
+  border: none !important;
+  color: #2a2a2a !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  padding: 0 4px !important;
+  font-family: 'Minecraft', 'Press Start 2P', 'Courier New', monospace !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  transition: all 0.2s ease !important;
+}
+
+.mine-toggle-container:hover .mine-reset-btn {
+  opacity: 1 !important;
+  width: auto !important;
+  padding: 0 4px !important;
+}
+
+.mine-reset-btn:hover {
+  color: #ff4444 !important;
+}
+
+/* Tool Cursor */
+.mine-tool-cursor {
+  position: fixed !important;
+  width: 48px !important;
+  height: 48px !important;
+  pointer-events: none !important;
+  z-index: 999999999999 !important;
+  display: none !important;
+  image-rendering: pixelated !important;
+  image-rendering: -moz-crisp-edges !important;
+  image-rendering: crisp-edges !important;
+  transform-origin: bottom center !important;
+  will-change: transform !important;
+}
+
+.mine-tool-cursor img,
+.mine-tool-cursor .tool-img {
+  width: 100% !important;
+  height: 100% !important;
+  image-rendering: pixelated !important;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.02)) !important;
+  display: block !important;
+  object-fit: contain !important;
+}
+
+/* Mining Animation - 3D Forward Circular Motion */
+.mine-tool-cursor.mining-active {
+  animation: pickaxe-mine-3d 0.5s ease-in-out infinite !important;
+  transform-style: preserve-3d !important;
+}
+
+@keyframes pickaxe-mine-3d {
+  0% {
+    transform: 
+      perspective(500px)
+      rotateX(0deg) 
+      rotateZ(-20deg) 
+      translateY(0px) 
+      translateZ(0px)
+      scale(1);
+  }
+  15% {
+    transform: 
+      perspective(500px)
+      rotateX(-15deg) 
+      rotateZ(-35deg) 
+      translateY(-10px) 
+      translateZ(-20px)
+      scale(0.95);
+  }
+  40% {
+    transform: 
+      perspective(500px)
+      rotateX(-30deg) 
+      rotateZ(-50deg) 
+      translateY(-5px) 
+      translateZ(-40px)
+      scale(0.9);
+  }
+  65% {
+    transform: 
+      perspective(500px)
+      rotateX(10deg) 
+      rotateZ(-25deg) 
+      translateY(10px) 
+      translateZ(20px)
+      scale(1.05);
+  }
+  85% {
+    transform: 
+      perspective(500px)
+      rotateX(5deg) 
+      rotateZ(-15deg) 
+      translateY(5px) 
+      translateZ(10px)
+      scale(1.02);
+  }
+  100% {
+    transform: 
+      perspective(500px)
+      rotateX(0deg) 
+      rotateZ(-20deg) 
+      translateY(0px) 
+      translateZ(0px)
+      scale(1);
+  }
+}
+
+/* Hoverable elements */
+.mine-hoverable {
+  outline: 3px solid #07a819 !important;
+  outline-offset: 2px !important;
+  cursor: crosshair !important;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5) !important;
+}
+
+/* Floating cursor animation when mining */
+#mine-floating-cursor.mining-active,
+#mine-floating-cursor.mining-active > *,
+#mine-floating-cursor.mining-active img {
+  animation: pickaxe-swing 0.4s ease-in-out infinite !important;
+}
+
+@keyframes pickaxe-swing {
+  0%, 100% {
+    transform: translateY(-50%) rotate(-10deg) scale(1);
+  }
+  25% {
+    transform: translateY(-55%) rotate(-25deg) translateX(-3px) scale(0.95);
+  }
+  50% {
+    transform: translateY(-45%) rotate(5deg) translateX(3px) scale(1.05);
+  }
+  75% {
+    transform: translateY(-50%) rotate(-15deg) translateX(-2px) scale(0.98);
+  }
+}
+
+/* Mining overlay */
+.mine-overlay {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 2147483647 !important;
+  overflow: hidden !important;
+}
+
+/* SVG Crack Images - now as repeating backgrounds */
+.mine-crack-svg {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  image-rendering: pixelated !important;
+  image-rendering: -moz-crisp-edges !important;
+  image-rendering: crisp-edges !important;
+  pointer-events: none !important;
+  z-index: 2147483647 !important;
+}
+
+/* Ensure crack overlay appears above everything in the element including images */
+.mine-overlay::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 2147483646 !important;
+  pointer-events: none !important;
+}
+
+/* Pixelated crack stages */
+.mine-crack {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  image-rendering: pixelated !important;
+  image-rendering: -moz-crisp-edges !important;
+  image-rendering: crisp-edges !important;
+  z-index: 2147483647 !important;
+  pointer-events: none !important;
+}
+
+/* Pixelated crack stages - authentic Minecraft style */
+/* Cracks start small in center and expand to fill the entire element */
+.mine-crack-0 {
+  background: none !important;
+}
+
+.mine-crack-1 {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(0,0,0,0.8) 4px, transparent 5px),
+    radial-gradient(circle at 45% 55%, rgba(0,0,0,0.8) 3px, transparent 4px),
+    radial-gradient(circle at 55% 45%, rgba(0,0,0,0.8) 3px, transparent 4px),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.3) 8px, transparent 9px) !important;
+  background-size: 20px 20px !important;
+  background-position: center !important;
+  border: 2px dashed rgba(0,0,0,0.3) !important;
+}
+
+.mine-crack-2 {
+  background:
+    linear-gradient(90deg, transparent 46%, rgba(0,0,0,0.9) 46%, rgba(0,0,0,0.9) 54%, transparent 54%),
+    linear-gradient(0deg, transparent 46%, rgba(0,0,0,0.9) 46%, rgba(0,0,0,0.9) 54%, transparent 54%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2) 15px, transparent 16px) !important;
+  background-size: 30px 30px !important;
+  background-position: center !important;
+  border: 2px solid rgba(0,0,0,0.4) !important;
+}
+
+.mine-crack-3 {
+  background:
+    linear-gradient(45deg, transparent 46%, rgba(0,0,0,0.9) 46%, rgba(0,0,0,0.9) 54%, transparent 54%),
+    linear-gradient(-45deg, transparent 46%, rgba(0,0,0,0.9) 46%, rgba(0,0,0,0.9) 54%, transparent 54%),
+    linear-gradient(90deg, transparent 47%, rgba(0,0,0,0.9) 47%, rgba(0,0,0,0.9) 53%, transparent 53%),
+    linear-gradient(0deg, transparent 47%, rgba(0,0,0,0.9) 47%, rgba(0,0,0,0.9) 53%, transparent 53%),
+    rgba(255, 255, 255, 0.1) !important;
+  background-size: 40px 40px !important;
+  background-position: center !important;
+  border: 3px solid rgba(0,0,0,0.5) !important;
+}
+
+.mine-crack-4 {
+  background:
+    repeating-linear-gradient(90deg, transparent, transparent 18%, rgba(0,0,0,0.95) 18%, rgba(0,0,0,0.95) 20%, transparent 20%, transparent 48%, rgba(0,0,0,0.95) 48%, rgba(0,0,0,0.95) 52%, transparent 52%, transparent 80%, rgba(0,0,0,0.95) 80%, rgba(0,0,0,0.95) 82%, transparent 82%),
+    repeating-linear-gradient(0deg, transparent, transparent 18%, rgba(0,0,0,0.95) 18%, rgba(0,0,0,0.95) 20%, transparent 20%, transparent 48%, rgba(0,0,0,0.95) 48%, rgba(0,0,0,0.95) 52%, transparent 52%, transparent 80%, rgba(0,0,0,0.95) 80%, rgba(0,0,0,0.95) 82%, transparent 82%),
+    repeating-linear-gradient(45deg, transparent, transparent 45%, rgba(0,0,0,0.9) 45%, rgba(0,0,0,0.9) 55%, transparent 55%),
+    repeating-linear-gradient(-45deg, transparent, transparent 45%, rgba(0,0,0,0.9) 45%, rgba(0,0,0,0.9) 55%, transparent 55%),
+    rgba(200, 200, 200, 0.2) !important;
+  background-size: 100% 100% !important;
+  border: 3px solid rgba(0,0,0,0.6) !important;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5) !important;
+}
+
+.mine-crack-5 {
+  background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.95), rgba(0,0,0,0.95) 3%, transparent 3%, transparent 8%),
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.95), rgba(0,0,0,0.95) 3%, transparent 3%, transparent 8%),
+    repeating-linear-gradient(45deg, rgba(0,0,0,0.9), rgba(0,0,0,0.9) 4%, transparent 4%, transparent 10%),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,0.9), rgba(0,0,0,0.9) 4%, transparent 4%, transparent 10%),
+    rgba(150, 150, 150, 0.3) !important;
+  background-size: 100% 100% !important;
+  border: 4px solid rgba(0,0,0,0.7) !important;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.6) !important;
+}
+
+.mine-crack-6 {
+  background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.95), rgba(0,0,0,0.95) 4%, transparent 4%, transparent 6%),
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.95), rgba(0,0,0,0.95) 4%, transparent 4%, transparent 6%),
+    repeating-linear-gradient(45deg, rgba(0,0,0,0.95), rgba(0,0,0,0.95) 5%, transparent 5%, transparent 8%),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,0.95), rgba(0,0,0,0.95) 5%, transparent 5%, transparent 8%),
+    repeating-linear-gradient(30deg, rgba(0,0,0,0.9), rgba(0,0,0,0.9) 4%, transparent 4%, transparent 7%),
+    rgba(100, 100, 100, 0.4) !important;
+  background-size: 100% 100% !important;
+  border: 4px solid rgba(0,0,0,0.8) !important;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.7) !important;
+}
+
+.mine-crack-7 {
+  background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.98), rgba(0,0,0,0.98) 5%, transparent 5%, transparent 7%),
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.98), rgba(0,0,0,0.98) 5%, transparent 5%, transparent 7%),
+    repeating-linear-gradient(45deg, rgba(0,0,0,0.98), rgba(0,0,0,0.98) 5%, transparent 5%, transparent 7%),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,0.98), rgba(0,0,0,0.98) 5%, transparent 5%, transparent 7%),
+    repeating-linear-gradient(30deg, rgba(0,0,0,0.95), rgba(0,0,0,0.95) 5%, transparent 5%, transparent 8%),
+    repeating-linear-gradient(-30deg, rgba(0,0,0,0.95), rgba(0,0,0,0.95) 5%, transparent 5%, transparent 8%),
+    rgba(80, 80, 80, 0.5) !important;
+  background-size: 100% 100% !important;
+  border: 5px solid rgba(0,0,0,0.85) !important;
+  box-shadow: inset 0 0 25px rgba(0,0,0,0.8) !important;
+}
+
+.mine-crack-8 {
+  background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.98), rgba(0,0,0,0.98) 6%, transparent 6%, transparent 8%),
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.98), rgba(0,0,0,0.98) 6%, transparent 6%, transparent 8%),
+    repeating-linear-gradient(45deg, rgba(0,0,0,0.98), rgba(0,0,0,0.98) 6%, transparent 6%, transparent 8%),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,0.98), rgba(0,0,0,0.98) 6%, transparent 6%, transparent 8%),
+    repeating-linear-gradient(30deg, rgba(0,0,0,0.98), rgba(0,0,0,0.98) 6%, transparent 6%, transparent 8%),
+    repeating-linear-gradient(-30deg, rgba(0,0,0,0.98), rgba(0,0,0,0.98) 6%, transparent 6%, transparent 8%),
+    repeating-linear-gradient(60deg, rgba(0,0,0,0.95), rgba(0,0,0,0.95) 6%, transparent 6%, transparent 8%),
+    rgba(60, 60, 60, 0.6) !important;
+  background-size: 100% 100% !important;
+  border: 5px solid rgba(0,0,0,0.9) !important;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.85) !important;
+}
+
+.mine-crack-9 {
+  background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,1), rgba(0,0,0,1) 7%, transparent 7%, transparent 8%),
+    repeating-linear-gradient(0deg, rgba(0,0,0,1), rgba(0,0,0,1) 7%, transparent 7%, transparent 8%),
+    repeating-linear-gradient(45deg, rgba(0,0,0,1), rgba(0,0,0,1) 7%, transparent 7%, transparent 8%),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,1), rgba(0,0,0,1) 7%, transparent 7%, transparent 8%),
+    repeating-linear-gradient(30deg, rgba(0,0,0,1), rgba(0,0,0,1) 7%, transparent 7%, transparent 8%),
+    repeating-linear-gradient(-30deg, rgba(0,0,0,1), rgba(0,0,0,1) 7%, transparent 7%, transparent 8%),
+    repeating-linear-gradient(60deg, rgba(0,0,0,0.98), rgba(0,0,0,0.98) 7%, transparent 7%, transparent 8%),
+    repeating-linear-gradient(-60deg, rgba(0,0,0,0.98), rgba(0,0,0,0.98) 7%, transparent 7%, transparent 8%),
+    rgba(40, 40, 40, 0.7) !important;
+  background-size: 100% 100% !important;
+  animation: shake 0.1s infinite !important;
+  border: 6px solid rgba(0,0,0,0.95) !important;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.9), 0 0 10px rgba(255,0,0,0.5) !important;
+}
+
+/* Shake animation for final crack stage */
+@keyframes shake {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, 2px); }
+  50% { transform: translate(2px, -2px); }
+  75% { transform: translate(-2px, -2px); }
+}
+
+/* XP notification */
+.mine-xp-notification {
+  position: fixed !important;
+  background: rgba(0, 255, 0, 0.9) !important;
+  color: white !important;
+  padding: 8px 16px !important;
+  border-radius: 4px !important;
+  font-family: Monospace !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  z-index: 10000000 !important;
+  pointer-events: none !important;
+  animation: float-up 2s ease-out forwards !important;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5) !important;
+  border: 3px solid #00aa00 !important;
+  image-rendering: pixelated !important;
+}
+
+/* XP Orb animation */
+.mine-xp-orb {
+  position: fixed !important;
+  width: 24px !important;
+  height: 24px !important;
+  z-index: 10000001 !important;
+  pointer-events: none !important;
+  animation: xp-orb-float-to-extension 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
+  font-size: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+@keyframes xp-orb-float-to-extension {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  10% {
+    transform: translate(0, -20px) scale(1.2) rotate(30deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--target-x), var(--target-y)) scale(0.5) rotate(720deg);
+  }
+}
+
+@keyframes float-up {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -100px) scale(1.5);
+  }
+}
+
+/* Creeper fade-in animation */
+@keyframes mine-creeper-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Creeper defuse animation (Dennis ability) */
+@keyframes mine-creeper-defuse {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Warden warning pulse animation */
+@keyframes warden-warning-pulse {
+  0% {
+    transform: translateX(-50%) scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.05);
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Mining particles */
+.mine-particle {
+  position: fixed !important;
+  width: 8px !important;
+  height: 8px !important;
+  z-index: 2147483646 !important;
+  pointer-events: none !important;
+  image-rendering: pixelated !important;
+  will-change: transform, opacity !important;
+}
+
+@keyframes particle-burst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0.3);
+  }
+}
+
+/* On-page Inventory UI */
+.mine-inventory-container {
+  position: fixed !important;
+  /* Position will be set dynamically by JS */
+  transform: none !important;
+  z-index: 2147483647 !important;
+  background: #b8b8b8 !important;
+  padding: 12px !important;
+  border-top: 3px solid #d8d8d8 !important;
+  border-left: 3px solid #d8d8d8 !important;
+  border-right: 3px solid #4a4a4a !important;
+  border-bottom: 3px solid #4a4a4a !important;
+  box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.2), inset -2px -2px 0 rgba(0, 0, 0, 0.2) !important;
+  font-family: 'Minecraft', 'Press Start 2P', 'Courier New', monospace !important;
+  user-select: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity 0.3s ease, visibility 0.3s ease !important;
+  width: auto !important;
+  max-width: none !important;
+}
+
+.mine-inventory-container.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.mine-inventory-header {
+  text-align: center !important;
+  color: #2a2a2a !important;
+  font-size: 14px !important;
+  margin-bottom: 8px !important;
+  font-weight: bold !important;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5) !important;
+}
+
+.mine-inventory-content {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: flex-start !important;
+}
+
+.mine-inventory-section {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+
+.mine-section-header {
+  font-size: 11px !important;
+  color: #2a2a2a !important;
+  font-weight: bold !important;
+  text-align: left !important;
+  margin-bottom: 2px !important;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5) !important;
+}
+
+.mine-current-enchantment {
+  background: rgba(75, 0, 130, 0.3) !important;
+  border: 2px solid #9370DB !important;
+  border-radius: 4px !important;
+  padding: 6px !important;
+  margin-bottom: 0px !important;
+  font-family: 'Minecraft', monospace !important;
+  font-size: 10px !important;
+  animation: enchant-glow 2s ease-in-out infinite !important;
+  min-width: 100px !important;
+  text-align: center !important;
+  color: #ffffff !important;
+  text-shadow: 1px 1px 0 #000000 !important;
+}
+
+.mine-current-enchantment img {
+  margin: 0 !important;
+}
+
+@keyframes enchant-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(147, 112, 219, 0.5) !important;
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(147, 112, 219, 0.8) !important;
+  }
+}
+
+.mine-inventory-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(45px, auto)) !important;
+  grid-template-rows: repeat(4, minmax(45px, auto)) !important;
+  gap: 5px !important;
+}
+
+.mine-enchantment-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(45px, auto)) !important;
+  gap: 5px !important;
+}
+
+@media (max-width: 600px) {
+  .mine-inventory-content {
+    flex-direction: column !important;
+  }
+}
+
+.mine-inventory-slot {
+  background: rgba(139, 69, 19, 0.3) !important;
+  border: 2px solid #5c3317 !important;
+  border-radius: 4px !important;
+  padding: 4px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 45px !important;
+  min-width: 45px !important;
+  aspect-ratio: 1 / 1 !important;
+  transition: all 0.2s ease !important;
+  position: relative !important;
+  cursor: pointer !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.mine-inventory-count {
+  position: absolute !important;
+  bottom: 2px !important;
+  right: 2px !important;
+  color: #ffffff !important;
+  font-size: 10px !important;
+  font-weight: bold !important;
+  text-shadow: 1px 1px 2px #000000, -1px -1px 2px #000000, 1px -1px 2px #000000, -1px 1px 2px #000000 !important;
+  pointer-events: none !important;
+  line-height: 1 !important;
+}
+
+.mine-inventory-slot:hover {
+  background: rgba(139, 69, 19, 0.5) !important;
+  border-color: #8B4513 !important;
+  transform: scale(1.05) !important;
+}
+
+.mine-inventory-slot.empty {
+  opacity: 0.3 !important;
+  border-style: dashed !important;
+  cursor: default !important;
+}
+
+.mine-inventory-slot.empty:hover {
+  transform: none !important;
+}
+
+.mine-enchant-slot {
+  border-color: #9370DB !important;
+  background: rgba(75, 0, 130, 0.3) !important;
+}
+
+.mine-enchant-slot.active {
+  border-color: #FFD700 !important;
+  background: rgba(255, 215, 0, 0.2) !important;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5) !important;
+}
+
+.mine-enchant-slot:hover {
+  border-color: #DDA0DD !important;
+  transform: scale(1.08) !important;
+}
+
+.mine-enchant-durability-bar {
+  width: 100% !important;
+  height: 4px !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+  border-radius: 2px !important;
+  overflow: hidden !important;
+  margin-top: 2px !important;
+}
+
+.mine-enchant-durability-fill {
+  height: 100% !important;
+  background: linear-gradient(90deg, #ff4444 0%, #ffaa00 50%, #44ff44 100%) !important;
+  transition: width 0.3s ease !important;
+}
+
+.mine-enchantment-grid {
+  display: grid !important;
+  grid-template-columns: repeat(6, 60px) !important;
+  gap: 6px !important;
+  justify-content: center !important;
+  margin-top: 10px !important;
+}
+
+@media (max-width: 600px) {
+  .mine-enchantment-grid {
+    grid-template-columns: repeat(3, 60px) !important;
+  }
+}
+
+.mine-inventory-icon {
+  width: 32px !important;
+  height: 32px !important;
+  image-rendering: pixelated !important;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5)) !important;
+  pointer-events: none !important;
+}
+
+.mine-inventory-tooltip {
+  position: absolute !important;
+  bottom: 105% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: rgba(0, 0, 0, 0.95) !important;
+  color: #ffffff !important;
+  padding: 6px 10px !important;
+  border-radius: 4px !important;
+  font-size: 11px !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity 0.2s ease, visibility 0.2s ease !important;
+  z-index: 10 !important;
+  border: 1px solid #8B4513 !important;
+}
+
+.mine-inventory-slot:hover .mine-inventory-tooltip {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.mine-inventory-name {
+  font-size: 10px !important;
+  color: #ffffff !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8) !important;
+}
+
+.mine-inventory-amount {
+  font-size: 11px !important;
+  color: #FFD700 !important;
+  font-weight: bold !important;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8) !important;
+}
+
+.mine-inventory-close {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  background: #ff4444 !important;
+  color: white !important;
+  border-top: 2px solid #ff6666 !important;
+  border-left: 2px solid #ff6666 !important;
+  border-right: 2px solid #cc0000 !important;
+  border-bottom: 2px solid #cc0000 !important;
+  width: 24px !important;
+  height: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  line-height: 1 !important;
+  font-family: 'Minecraft', monospace !important;
+}
+
+.mine-inventory-close:hover {
+  background: #cc0000 !important;
+  transform: scale(1.1) !important;
+}
+
+.mine-inventory-hint {
+  text-align: center !important;
+  color: #888 !important;
+  font-size: 10px !important;
+  margin-top: 8px !important;
+  font-style: italic !important;
+}
+
+.mine-craft-button {
+  width: 100% !important;
+  margin-top: 10px !important;
+  padding: 10px !important;
+  background: linear-gradient(135deg, #8B4513 0%, #654321 100%) !important;
+  border: 2px solid #CD853F !important;
+  border-radius: 4px !important;
+  color: #FFD700 !important;
+  font-family: 'Minecraft', 'Press Start 2P', 'Courier New', monospace !important;
+  font-size: 13px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+}
+
+.mine-craft-button img {
+  margin: 0 !important;
+}
+
+.mine-craft-button:hover {
+  background: linear-gradient(135deg, #A0522D 0%, #8B4513 100%) !important;
+  transform: scale(1.02) !important;
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3) !important;
+}
+
+.mine-craft-button:active {
+  transform: scale(0.98) !important;
+}
+
+/* Crafting Menu */
+.mine-crafting-menu {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 2147483648 !important;
+  background: #b8b8b8 !important;
+  padding: 20px !important;
+  border-top: 3px solid #d8d8d8 !important;
+  border-left: 3px solid #d8d8d8 !important;
+  border-right: 3px solid #4a4a4a !important;
+  border-bottom: 3px solid #4a4a4a !important;
+  box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.2), inset -2px -2px 0 rgba(0, 0, 0, 0.2) !important;
+  font-family: 'Minecraft', 'Press Start 2P', 'Courier New', monospace !important;
+  user-select: none !important;
+  max-width: 90vw !important;
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+}
+
+.mine-crafting-header {
+  text-align: center !important;
+  color: #2a2a2a !important;
+  font-size: 16px !important;
+  margin-bottom: 15px !important;
+  font-weight: bold !important;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5) !important;
+}
+
+.mine-crafting-recipes {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  width: 500px !important;
+  max-width: 90vw !important;
+}
+
+.mine-craft-recipe {
+  display: flex !important;
+  align-items: center !important;
+  gap: 15px !important;
+  padding: 10px 15px !important;
+  margin-bottom: 8px !important;
+  border-radius: 4px !important;
+  transition: all 0.2s ease !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  min-height: 84px !important;
+}
+
+.mine-craft-recipe.available {
+  background: rgba(139, 69, 19, 0.6) !important;
+  border: 2px solid #8B4513 !important;
+  cursor: pointer !important;
+}
+
+.mine-craft-recipe.available:hover {
+  background: rgba(139, 69, 19, 0.8) !important;
+  border-color: #A0522D !important;
+  transform: translateX(3px) !important;
+}
+
+.mine-craft-recipe.disabled {
+  background: rgba(80, 80, 80, 0.3) !important;
+  border: 2px dashed #666 !important;
+  cursor: not-allowed !important;
+  opacity: 0.5 !important;
+}
+
+.mine-craft-recipe.disabled:hover {
+  transform: none !important;
+}
+
+.mine-craft-item-icon {
+  flex-shrink: 0 !important;
+  width: 64px !important;
+  height: 64px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(0, 0, 0, 0.3) !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 4px !important;
+  padding: 8px !important;
+}
+
+.mine-craft-item-icon img {
+  width: 48px !important;
+  height: 48px !important;
+  image-rendering: pixelated !important;
+}
+
+.mine-craft-item-info {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+
+.mine-craft-item-name {
+  font-size: 16px !important;
+  color: #FFD700 !important;
+  font-weight: bold !important;
+  text-shadow: 2px 2px 0 #000000 !important;
+  line-height: 1.2 !important;
+}
+
+.mine-craft-item-desc {
+  font-size: 12px !important;
+  color: #ffffff !important;
+  text-shadow: 1px 1px 0 #000000 !important;
+  line-height: 1.3 !important;
+}
+
+.mine-craft-resources {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 4px !important;
+}
+
+.mine-craft-resource-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 3px 6px !important;
+  border-radius: 3px !important;
+  font-size: 11px !important;
+  text-shadow: 1px 1px 0 #000000 !important;
+}
+
+.mine-craft-resource-item.enough {
+  background: rgba(76, 175, 80, 0.3) !important;
+  border: 1px solid #4CAF50 !important;
+  color: #A5D6A7 !important;
+}
+
+.mine-craft-resource-item.insufficient {
+  background: rgba(244, 67, 54, 0.3) !important;
+  border: 1px solid #F44336 !important;
+  color: #FFCDD2 !important;
+}
+
+.mine-craft-resource-item img {
+  width: 16px !important;
+  height: 16px !important;
+  image-rendering: pixelated !important;
+}
+
+.mine-crafting-close {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  background: #ff4444 !important;
+  color: white !important;
+  border-top: 2px solid #ff6666 !important;
+  border-left: 2px solid #ff6666 !important;
+  border-right: 2px solid #cc0000 !important;
+  border-bottom: 2px solid #cc0000 !important;
+  width: 28px !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  line-height: 1 !important;
+  font-family: 'Minecraft', monospace !important;
+}
+
+.mine-crafting-close:hover {
+  background: #cc0000 !important;
+  transform: scale(1.1) !important;
+}
+
+/* Pixelated rendering for the whole extension */
+* {
+  image-rendering: -webkit-optimize-contrast !important;
+}
+
+/* Zombie spawn animation */
+@keyframes mine-zombie-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Villager spawn animation */
+@keyframes mine-villager-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Villager trading UI */
+.mine-villager-trades-container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  width: 100% !important;
+  max-width: 350px !important;
+}
+
+.mine-villager-trade {
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 2px solid #8B4513 !important;
+  border-radius: 4px !important;
+  padding: 6px 8px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.mine-trade-icon-slot {
+  position: relative !important;
+  width: 40px !important;
+  height: 40px !important;
+  background: rgba(139, 69, 19, 0.5) !important;
+  border: 2px solid #5c3317 !important;
+  border-radius: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.mine-trade-icon-count {
+  position: absolute !important;
+  bottom: 2px !important;
+  right: 2px !important;
+  color: #ffffff !important;
+  font-size: 10px !important;
+  font-weight: bold !important;
+  text-shadow: 1px 1px 2px #000000, -1px -1px 2px #000000, 1px -1px 2px #000000, -1px 1px 2px #000000 !important;
+  pointer-events: none !important;
+  line-height: 1 !important;
+}
+
+.mine-villager-trade-label {
+  color: white !important;
+  font-family: 'Minecraft', monospace !important;
+  font-size: 11px !important;
+  flex: 1 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.mine-villager-trade-btn,
+.mine-villager-trade-btn-disabled {
+  background: #4CAF50 !important;
+  color: white !important;
+  border: 2px solid #2E7D32 !important;
+  border-radius: 3px !important;
+  padding: 6px 12px !important;
+  font-family: 'Minecraft', monospace !important;
+  font-size: 10px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.mine-villager-trade-btn:hover {
+  background: #66BB6A !important;
+  transform: scale(1.05) !important;
+}
+
+.mine-villager-trade-btn-disabled {
+  background: #999 !important;
+  border-color: #666 !important;
+  cursor: not-allowed !important;
+  opacity: 0.5 !important;
+}
+
+.mine-villager-close {
+  background: #ff4444 !important;
+  color: white !important;
+  border: 2px solid #cc0000 !important;
+  border-radius: 5px !important;
+  padding: 8px 16px !important;
+  font-family: 'Minecraft', monospace !important;
+  font-size: 12px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.mine-villager-close:hover {
+  background: #cc0000 !important;
+  transform: scale(1.05) !important;
+}

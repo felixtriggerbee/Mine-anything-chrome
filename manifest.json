@@ -1,0 +1,77 @@
+{
+  "manifest_version": 3,
+  "name": "Mine Anything",
+  "version": "1.0.0",
+  "description": "Mine away website elements Minecraft-style! Click any element to mine it and level up your tools.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "debug-injector.js",
+        "assets/tools/*.svg", 
+        "assets/pickaxe-levels/*.svg", 
+        "assets/pickaxe-levels/*.png",
+        "assets/pickaxe-levels/*.gif",
+        "assets/cracks/*.svg",
+        "assets/other/*.png",
+        "assets/fonts/*.ttf",
+        "assets/explosion/*.gif",
+        "assets/Pets/*.gif",
+        "assets/Pets/*.webp",
+        "assets/Pets/*.png",
+        "assets/world-items/*.gif",
+        "assets/world-items/*.png",
+        "assets/world-items/*.webp",
+        "assets/Blocks/*.svg",
+        "assets/Blocks/*.png",
+        "assets/resources/*.png",
+        "assets/resources/*.gif",
+        "assets/resources/*.webp",
+        "assets/resources/*.jpg",
+        "assets/items/*.png",
+        "assets/items/*.gif",
+        "assets/items/*.webp",
+        "assets/achievements/*.png",
+        "assets/achievements/*.gif",
+        "assets/mobs/*.png",
+        "assets/mobs/*.gif",
+        "assets/mobs/*.webp",
+        "assets/ui/*.png",
+        "assets/ui/*.gif",
+        "assets/ui/*.webp"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

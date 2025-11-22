@@ -1,0 +1,779 @@
+/* Mine Anything - Popup Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Minecraft';
+  src: url('../assets/fonts/Minecraft.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  width: 400px;
+  margin: 0;
+  padding: 20px;
+  background: #2a2a2a;
+  color: #e0e0e0;
+  font-family: 'Minecraft', 'Press Start 2P', 'Courier New', monospace;
+  font-size: 13px;
+}
+
+.container {
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #404040;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #4a9eff;
+  line-height: 1.5;
+}
+
+.tagline {
+  font-size: 13px;
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+h2 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* Stats Section */
+.stats-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: #353535;
+  border-radius: 4px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 2px solid #4a4a4a;
+}
+
+.stat-icon {
+  font-size: 32px;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-label {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4a9eff;
+}
+
+/* Tool Section */
+.tool-section {
+  background: #353535;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 2px solid #4a4a4a;
+}
+
+.enchantment-section {
+  background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 100%);
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 2px solid #9370DB;
+  animation: enchant-pulse 2s ease-in-out infinite;
+}
+
+@keyframes enchant-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(147, 112, 219, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(147, 112, 219, 0.8);
+  }
+}
+
+.enchantment-display {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+.tool-display {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.tool-icon {
+  font-size: 48px;
+  animation: float 3s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: #2a2a2a;
+  position: relative;
+  /* Minecraft-style border with light top-left and dark bottom-right */
+  border-top: 3px solid #7a7a7a;
+  border-left: 3px solid #7a7a7a;
+  border-right: 3px solid #1a1a1a;
+  border-bottom: 3px solid #1a1a1a;
+  box-shadow: 
+    inset 2px 2px 0 rgba(255, 255, 255, 0.1),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.tool-icon img {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  width: 48px;
+  height: 48px;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.tool-info {
+  flex: 1;
+}
+
+.tool-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  color: #4a9eff;
+}
+
+.tool-speed {
+  font-size: 13px;
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
+/* Progress Section */
+.progress-section {
+  background: #353535;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 2px solid #4a4a4a;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 24px;
+  background: #1a1a1a;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 2px solid #4a4a4a;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #4a9eff;
+  transition: width 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+/* Tools List */
+.tools-list {
+  background: #353535;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 2px solid #4a4a4a;
+}
+
+/* Pets Section */
+.pets-section {
+  background: #353535;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 2px solid #4caf50;
+}
+
+.pets-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pet-item {
+  background: #2a2a2a;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #4caf50;
+}
+
+.pet-icon {
+  flex-shrink: 0;
+}
+
+.pet-info {
+  flex: 1;
+}
+
+.pet-name {
+  font-size: 15px;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 3px;
+}
+
+.pet-ability {
+  font-size: 13px;
+  color: #b0b0b0;
+}
+
+/* Diamonds Section */
+.diamonds-section {
+  background: #353535;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 2px solid #00ffff;
+}
+
+.diamonds-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.diamond-item {
+  background: #2a2a2a;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #00ffff;
+}
+
+.diamond-icon {
+  flex-shrink: 0;
+}
+
+.diamond-info {
+  flex: 1;
+}
+
+.diamond-name {
+  font-size: 15px;
+  font-weight: bold;
+  color: #00ffff;
+  margin-bottom: 3px;
+}
+
+.diamond-desc {
+  font-size: 13px;
+  color: #b0b0b0;
+}
+
+/* Achievements Section */
+.achievements-section {
+  background: #353535;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 2px solid #FFD700;
+}
+
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.achievement-progress {
+  padding: 8px;
+  text-align: center;
+  background: #2a2a2a;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  border: 1px solid #404040;
+}
+
+.achievement-item {
+  background: #2a2a2a;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #FFD700;
+  transition: all 0.2s ease;
+}
+
+.achievement-item.locked {
+  opacity: 0.5;
+  border-color: #404040;
+}
+
+.achievement-item.unlocked {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 165, 0, 0.1) 100%);
+}
+
+.achievement-icon {
+  flex-shrink: 0;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.achievement-info {
+  flex: 1;
+}
+
+.achievement-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFD700;
+  margin-bottom: 3px;
+}
+
+.achievement-item.locked .achievement-name {
+  color: #666;
+}
+
+.achievement-desc {
+  font-size: 12px;
+  color: #b0b0b0;
+}
+
+.achievement-item.locked .achievement-desc {
+  color: #555;
+}
+
+.achievement-badge {
+  flex-shrink: 0;
+  font-size: 20px;
+  color: #00ff00;
+}
+
+.achievement-badge.locked-badge {
+  color: #404040;
+  font-size: 16px;
+}
+
+/* Inventory Section */
+.inventory-section {
+  background: #353535;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 2px solid #8B4513;
+}
+
+.inventory-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.inventory-item {
+  background: #2a2a2a;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #8B4513;
+  transition: all 0.2s ease;
+}
+
+.inventory-item:hover {
+  background: #333;
+  border-color: #CD853F;
+}
+
+.inventory-icon {
+  flex-shrink: 0;
+}
+
+.inventory-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.inventory-name {
+  font-size: 13px;
+  font-weight: bold;
+  color: #CD853F;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inventory-amount {
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Blocked Domains Section */
+.blocked-domains-section {
+  background: #353535;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 2px solid #ff4444;
+}
+
+.blocked-domain-info {
+  margin-bottom: 10px;
+}
+
+.blocked-domain-info p {
+  color: #b0b0b0;
+  font-size: 13px;
+  margin: 0;
+}
+
+.current-domain {
+  background: #2a2a2a;
+  border-radius: 4px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #404040;
+}
+
+#currentDomainText {
+  font-family: monospace;
+  color: #ffffff;
+  font-size: 14px;
+  flex: 1;
+  word-break: break-all;
+}
+
+.domain-block-btn {
+  padding: 8px 16px;
+  background: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Minecraft', monospace;
+  font-size: 12px;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.domain-block-btn:hover {
+  background: #ff6666;
+  transform: scale(1.05);
+}
+
+.domain-block-btn.blocked {
+  background: #4caf50;
+}
+
+.domain-block-btn.blocked:hover {
+  background: #66bb6a;
+}
+
+.blocked-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.blocked-domain-item {
+  background: #2a2a2a;
+  border-radius: 4px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 2px solid #ff4444;
+}
+
+.blocked-domain-name {
+  font-family: monospace;
+  color: #ffffff;
+  font-size: 13px;
+  flex: 1;
+  word-break: break-all;
+}
+
+.unblock-btn {
+  padding: 4px 12px;
+  background: #666;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 11px;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.unblock-btn:hover {
+  background: #888;
+}
+
+#toolsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tool-item {
+  background: #2a2a2a;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #404040;
+  transition: all 0.2s ease;
+}
+
+.tool-item.unlocked {
+  border-color: #4a9eff;
+}
+
+.tool-item.current {
+  background: #3a4a5a;
+  border-color: #4a9eff;
+  box-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+}
+
+.tool-item.locked {
+  opacity: 0.4;
+}
+
+.tool-item-icon {
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tool-item-icon img {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.tool-item-info {
+  flex: 1;
+}
+
+.tool-item-name {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.5;
+}
+
+.tool-item-details {
+  font-size: 13px;
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
+.badge {
+  font-size: 13px;
+  padding: 2px 6px;
+  background: #3a4a5a;
+  border-radius: 2px;
+  border: 1px solid #4a9eff;
+  line-height: 1.5;
+}
+
+.locked-badge {
+  background: #404040;
+  border-color: #606060;
+}
+
+/* Tips Section */
+.tips-section {
+  background: #353535;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 2px solid #4a4a4a;
+}
+
+.tips-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.tips-section li {
+  font-size: 13px;
+  margin-bottom: 8px;
+  padding-left: 15px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.tips-section li:before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #4a9eff;
+}
+
+/* Settings Section */
+.settings-section {
+  background: #353535;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 2px solid #4a4a4a;
+}
+
+.setting-item {
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.setting-item label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.setting-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.settings-row select {
+  flex: 1;
+  background: #2a2a2a;
+  color: #e0e0e0;
+  border: 2px solid #4a4a4a;
+  padding: 8px;
+  font-family: 'Minecraft', 'Press Start 2P', 'Courier New', monospace;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.settings-row input[type="text"] {
+  flex: 1;
+  background: #2a2a2a;
+  color: #e0e0e0;
+  border: 2px solid #4a4a4a;
+  padding: 8px;
+  font-family: 'Minecraft', 'Press Start 2P', 'Courier New', monospace;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.settings-row input[type="text"]:focus {
+  outline: none;
+  border-color: #6a6a6a;
+  background: #353535;
+}
+
+.reset-shortcut-btn {
+  background: #4a4a4a;
+  color: #e0e0e0;
+  border: 2px solid #6a6a6a;
+  padding: 6px 12px;
+  font-family: 'Minecraft', 'Press Start 2P', 'Courier New', monospace;
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.reset-shortcut-btn:hover {
+  background: #5a5a5a;
+}
+
+.setting-item select:focus {
+  outline: none;
+  border-color: #4a9eff;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding-top: 10px;
+  border-top: 2px solid #404040;
+}
+
+.version {
+  font-size: 13px;
+  opacity: 0.5;
+  line-height: 1.5;
+}

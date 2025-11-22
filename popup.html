@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mine Anything</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><img src="" id="headerPickaxe" style="width: 24px; height: 24px; vertical-align: middle; image-rendering: pixelated;"> Mine Anything</h1>
+      <p class="tagline">Minecraft meets the web!</p>
+    </header>
+
+    <div class="stats-section">
+      <div class="stat-card">
+        <div class="stat-icon"><img src="" id="minedBlockIcon" style="width: 32px; height: 32px; image-rendering: pixelated;"></div>
+        <div class="stat-content">
+          <div class="stat-label">Blocks mined</div>
+          <div class="stat-value" id="totalMined">0</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon"><img src="" id="xpOrbIcon" style="width: 32px; height: 32px; image-rendering: pixelated;"></div>
+        <div class="stat-content">
+          <div class="stat-label">Total XP</div>
+          <div class="stat-value" id="totalXP">0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-section">
+      <h2>Current Tool</h2>
+      <div class="tool-display">
+        <div class="tool-icon" id="toolIcon">✋</div>
+        <div class="tool-info">
+          <div class="tool-name" id="toolName">Hand</div>
+          <div class="tool-speed" id="toolSpeed">10.0s mining time</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="enchantment-section" id="enchantmentSection" style="display: none;">
+      <h2>✨ Current Enchantment</h2>
+      <div id="enchantmentDisplay" class="enchantment-display"></div>
+    </div>
+
+    <div class="daily-challenges-section" id="dailyChallengesSection" style="display: none;">
+      <h2>📋 Daily Challenges</h2>
+      <div id="dailyChallengesCountdown" class="challenges-countdown"></div>
+      <div id="dailyChallengesList" class="challenges-list"></div>
+    </div>
+
+    <div class="pets-section" id="petsSection" style="display: none;">
+      <h2>Collected Pets</h2>
+      <div id="petsList" class="pets-list"></div>
+    </div>
+
+    <div class="diamonds-section" id="diamondsSection" style="display: none;">
+      <h2>Diamond Collection</h2>
+      <div id="diamondsList" class="diamonds-list"></div>
+    </div>
+
+    <div class="achievements-section" id="achievementsSection" style="display: none;">
+      <h2>🏆 Achievements</h2>
+      <div id="achievementsList" class="achievements-list"></div>
+    </div>
+
+    <div class="inventory-section" id="inventorySection" style="display: none;">
+      <h2>📦 Inventory</h2>
+      <div id="inventoryList" class="inventory-list"></div>
+    </div>
+
+    <div class="progress-section">
+      <h2>Next Upgrade</h2>
+      <div class="progress-info">
+        <span id="nextToolName">Wooden pickaxe</span>
+        <span id="progressText">0 / 10 XP</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <div class="tools-list">
+      <h2>All Tools</h2>
+      <div id="toolsList"></div>
+    </div>
+
+    <div class="tips-section">
+      <h3>Tips</h3>
+      <ul>
+        <li>Click and hold any element to mine it</li>
+        <li>Mining ads gives <strong>2x XP</strong>!</li>
+        <li>Upgrade tools by earning XP</li>
+        <li>Better tools mine faster</li>
+      </ul>
+    </div>
+
+    <div class="blocked-domains-section">
+      <h2>Blocked Domains</h2>
+      <div class="blocked-domain-info">
+        <p>Disable the plugin on specific domains</p>
+      </div>
+      <div class="current-domain" id="currentDomain">
+        <span id="currentDomainText">Loading...</span>
+        <button id="toggleDomainBlock" class="domain-block-btn">Block Domain</button>
+      </div>
+      <div id="blockedDomainsList" class="blocked-list"></div>
+    </div>
+
+    <div class="settings-section">
+      <h2>Settings</h2>
+      <div class="setting-item">
+        <label>
+          <input type="checkbox" id="showToggleBtn" checked>
+          Show on-page mining control
+        </label>
+      </div>
+      <div class="setting-item">
+        <label>
+          <input type="checkbox" id="customNewTab" checked>
+          Custom New Tab Page (mining stats)
+        </label>
+      </div>
+      <div class="setting-item">
+        <label for="togglePosition">Control position:</label>
+        <select id="togglePosition">
+          <option value="top-right">Top Right</option>
+          <option value="top-left">Top Left</option>
+          <option value="bottom-right">Bottom Right</option>
+          <option value="bottom-left">Bottom Left</option>
+        </select>
+      </div>
+      
+      <div class="settings-row">
+        <label for="miningShortcut">Mining Shortcut:</label>
+        <input type="text" id="miningShortcut" placeholder="Press keys..." readonly>
+        <button id="resetShortcut" class="reset-shortcut-btn">Reset</button>
+      </div>
+    </div>
+
+    <footer>
+      <div class="version">v1.0.0</div>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
