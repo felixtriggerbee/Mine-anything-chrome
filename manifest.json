@@ -4,9 +4,7 @@
   "version": "1.0.0",
   "description": "Mine away website elements Minecraft-style! Click any element to mine it and level up your tools.",
   "permissions": [
-    "storage",
-    "activeTab",
-    "scripting"
+    "storage"
   ],
   "host_permissions": [
     "<all_urls>"

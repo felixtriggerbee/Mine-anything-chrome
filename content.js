@@ -1108,10 +1108,11 @@ function calculatePositionXP(element) {
 // Helper function to get current document height dynamically
 function getCurrentDocumentHeight() {
   return Math.max(
-    document.documentElement.scrollHeight,
-    document.documentElement.offsetHeight,
-    document.body.scrollHeight,
-    document.body.offsetHeight
+    document.documentElement?.scrollHeight || 0,
+    document.documentElement?.offsetHeight || 0,
+    document.body?.scrollHeight || 0,
+    document.body?.offsetHeight || 0,
+    1000 // Minimum fallback value
   );
 }
 
@@ -2466,7 +2467,7 @@ function spawnVillager(minedElement) {
         if (resource) {
           const iconUrl = chrome.runtime.getURL(`assets/resources/${resource.file}.png`);
           giveIconHTML = `
-            <div class="mine-trade-icon-slot" title="${resource.name}">
+            <div class="mine-trade-icon-slot" data-tooltip="${resource.name}">
               <img src="${iconUrl}" style="width: 32px; height: 32px; image-rendering: pixelated;">
               <div class="mine-trade-icon-count">${trade.give.amount}</div>
             </div>
@@ -2480,7 +2481,7 @@ function spawnVillager(minedElement) {
         if (resource) {
           const iconUrl = chrome.runtime.getURL(`assets/resources/${resource.file}.png`);
           receiveIconHTML = `
-            <div class="mine-trade-icon-slot" title="${resource.name}">
+            <div class="mine-trade-icon-slot" data-tooltip="${resource.name}">
               <img src="${iconUrl}" style="width: 32px; height: 32px; image-rendering: pixelated;">
               <div class="mine-trade-icon-count">${trade.receive.amount}</div>
             </div>
@@ -2490,8 +2491,9 @@ function spawnVillager(minedElement) {
         const enchant = ENCHANTMENTS[trade.receive.enchantment];
         if (enchant) {
           const bookUrl = chrome.runtime.getURL('assets/world-items/enchanted-book.gif');
+          const tooltipText = `${enchant.name}\n${enchant.description}`;
           receiveIconHTML = `
-            <div class="mine-trade-icon-slot" title="${enchant.name} Enchantment">
+            <div class="mine-trade-icon-slot" data-tooltip="${tooltipText}">
               <img src="${bookUrl}" style="width: 32px; height: 32px; image-rendering: pixelated;">
             </div>
           `;
@@ -2499,7 +2501,7 @@ function spawnVillager(minedElement) {
       } else if (trade.receive.xp) {
         const xpOrbUrl = chrome.runtime.getURL('assets/other/xp-orb.png');
         receiveIconHTML = `
-          <div class="mine-trade-icon-slot" title="Experience Points" style="position: relative;">
+          <div class="mine-trade-icon-slot" data-tooltip="${trade.receive.xp} Experience Points" style="position: relative;">
             <img src="${xpOrbUrl}" style="width: 32px; height: 32px; image-rendering: pixelated;">
             <div style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); font-family: 'Minecraft', monospace; font-size: 11px; color: #7CFC00; font-weight: bold; text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000; white-space: nowrap;">+${trade.receive.xp}</div>
           </div>
@@ -2550,9 +2552,76 @@ function spawnVillager(minedElement) {
     villagerContainer.querySelector('.mine-villager-close').addEventListener('click', () => {
       villagerContainer.remove();
     });
+    
+    // Add tooltip functionality
+    addVillagerTooltips(villagerContainer);
   });
   
   document.body.appendChild(villagerContainer);
+}
+
+// Add tooltip functionality to villager trade items
+function addVillagerTooltips(container) {
+  const slots = container.querySelectorAll('[data-tooltip]');
+  
+  slots.forEach(slot => {
+    slot.addEventListener('mouseenter', (e) => {
+      const tooltipText = slot.getAttribute('data-tooltip');
+      if (!tooltipText) return;
+      
+      // Create tooltip element
+      const tooltip = document.createElement('div');
+      tooltip.className = 'mine-villager-tooltip';
+      tooltip.textContent = tooltipText.replace(/\\n/g, '\n');
+      tooltip.style.cssText = `
+        position: fixed !important;
+        background: rgba(0, 0, 0, 0.95) !important;
+        color: #ffffff !important;
+        padding: 8px 12px !important;
+        border-radius: 4px !important;
+        font-family: 'Minecraft', monospace !important;
+        font-size: 12px !important;
+        pointer-events: none !important;
+        z-index: 2147483647 !important;
+        white-space: pre-wrap !important;
+        text-align: center !important;
+        border: 2px solid #555 !important;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5) !important;
+        line-height: 1.4 !important;
+      `;
+      
+      document.body.appendChild(tooltip);
+      
+      // Position tooltip
+      const rect = slot.getBoundingClientRect();
+      const tooltipRect = tooltip.getBoundingClientRect();
+      
+      let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+      let top = rect.top - tooltipRect.height - 8;
+      
+      // Keep tooltip on screen
+      if (left < 10) left = 10;
+      if (left + tooltipRect.width > window.innerWidth - 10) {
+        left = window.innerWidth - tooltipRect.width - 10;
+      }
+      if (top < 10) {
+        top = rect.bottom + 8; // Show below if not enough space above
+      }
+      
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+      
+      // Store reference for cleanup
+      slot._tooltip = tooltip;
+    });
+    
+    slot.addEventListener('mouseleave', () => {
+      if (slot._tooltip) {
+        slot._tooltip.remove();
+        slot._tooltip = null;
+      }
+    });
+  });
 }
 
 // Check if player can afford a trade

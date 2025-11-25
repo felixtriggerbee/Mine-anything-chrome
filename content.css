@@ -1178,3 +1178,41 @@ body.mine-cursor-active {
   background: #cc0000 !important;
   transform: scale(1.05) !important;
 }
+
+.mine-villager-tooltip {
+  position: fixed !important;
+  background: rgba(0, 0, 0, 0.95) !important;
+  color: #ffffff !important;
+  padding: 8px 12px !important;
+  border-radius: 4px !important;
+  font-family: 'Minecraft', monospace !important;
+  font-size: 12px !important;
+  pointer-events: none !important;
+  z-index: 2147483647 !important;
+  white-space: pre-wrap !important;
+  text-align: center !important;
+  border: 2px solid #555 !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5) !important;
+  line-height: 1.4 !important;
+  animation: mine-tooltip-fade-in 0.15s ease-out !important;
+}
+
+@keyframes mine-tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mine-trade-icon-slot {
+  cursor: help !important;
+}
+
+.mine-trade-icon-slot:hover {
+  background: rgba(139, 69, 19, 0.7) !important;
+  border-color: #8B4513 !important;
+}
